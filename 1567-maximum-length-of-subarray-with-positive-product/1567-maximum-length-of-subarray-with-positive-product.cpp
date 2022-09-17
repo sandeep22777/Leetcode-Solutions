@@ -1,19 +1,40 @@
 class Solution {
 public:
-    int getMaxLen(vector<int>& nums) {
+    int getMaxLen(vector<int>& arr) {
         
-       int n=nums.size(),mx=0, last_index=0,last_neg_index=-1,neg=0;
-        for(int i=0;i<n;++i){
-            if(nums[i]==0) last_index=i+1,last_neg_index=-1,neg=0;
-            else if(nums[i]<0){
-                if(last_neg_index==-1) last_neg_index=i;
-                neg++;
+     int firstneg = -1,firstzero = -1,negcount =0,ans = 0;
+            int  n = arr.size();
+    
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i] < 0)
+        {
+            negcount++;
+            if(firstneg == -1)
+            {
+                firstneg = i;
             }
-            else if(nums[i]>0 && neg%2) mx=max(mx,i-last_neg_index);
-            if(neg%2==0) mx=max(mx,i-last_index+1);
         }
-        return mx;
-            
+        
+        if(arr[i]== 0)
+        {
+            firstneg = -1;
+            firstzero  =i;
+            negcount = 0;
+        }
+        else
+        {
+            if(negcount %2 == 0)
+            {
+                ans = max(ans,i-firstzero);
+            }
+            else
+            {
+                ans = max(ans,i-firstneg);
+            }
+        }
+    }
+    return ans;
             
     }
 };
