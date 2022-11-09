@@ -8,7 +8,7 @@ public:
             if(s[i] != ' ')
                 len++;
             else if(len > 0)
-                return len;
+                break;
         }
         
         return len;
