@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
         
-        vector<vector<int>> ans;
+      vector<vector<int>> ans;
         
         for(int i=1;i<=numRows;i++)
         {
@@ -19,6 +19,7 @@ public:
         }
         
         return ans;
+        
         
     }
 };
