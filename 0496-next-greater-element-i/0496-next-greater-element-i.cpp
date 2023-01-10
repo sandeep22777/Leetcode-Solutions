@@ -9,29 +9,38 @@ public:
         
         for(int i=0;i<s;i++)
         {
-            for(int j =0;j<s2;j++)
+            int highest = -1;
+            
+            for(int j =s2-1;j>=0;j--)
             {
-                
                 if(nums1[i] == nums2[j])
                 {
+                    if(j == s2-1) break;
                     
-                    int temp = j;
-                    int tempans = -1;
                     
-                    while(temp < (s2-1)  )
+                    if(nums2[j+1] > nums2[j])
                     {
-                        if(nums2[j] < nums2[temp+1])
-                        {
-                            tempans =  nums2[temp+1];
-                            break;
-                           
-                        }
-                         temp++;                                                                   
+                        highest  = nums2[j+1];
+                        break;
                     }
-                    v.push_back(tempans);
-                    break;
+                    else if(nums2[j] < highest)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        highest  =-1;
+                        break;
+                    }
                 }
+                if( nums1[i] < nums2[j] )
+                {
+                    highest  = nums2[j];
+                  //  highest  = max(highest,nums2[j]);
+                }
+                                         
             }
+            v.push_back(highest);
             
         }
         return v;
