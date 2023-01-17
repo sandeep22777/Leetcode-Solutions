@@ -7,8 +7,8 @@ public:
         
         if(a.size() != b.size()) return false;
         
-        while(!a.empty())
-        {
+       while(!a.empty())
+       {
             if(a.top() == b.top())
             {
                 a.pop();
@@ -16,9 +16,11 @@ public:
             }
             else
             {
-                return false;
+                flag = false;
+                break;
             }
         }
+       
         
         return flag;
     }
@@ -28,10 +30,10 @@ public:
     bool backspaceCompare(string s, string t) {
         stack<char> one;
         stack<char> two;
-        
+       
         for(int i=0;i<s.size();i++)
         {
-            if(s[i] !='#')
+            if(s[i] != '#')
             {
                 one.push(s[i]);
             }
@@ -42,9 +44,9 @@ public:
         }
         
         
-         for(int i=0;i<t.size();i++)
+          for(int i=0;i<t.size();i++)
         {
-            if(t[i] !='#')
+            if(t[i] != '#')
             {
                 two.push(t[i]);
             }
@@ -53,6 +55,7 @@ public:
                 if(!two.empty()) two.pop();
             }
         }
+        
         
         
         return check(one,two);
