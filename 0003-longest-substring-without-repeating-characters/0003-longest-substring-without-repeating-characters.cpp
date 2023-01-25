@@ -7,15 +7,25 @@ public:
         
         while(i<s.size())
         {
-            while(m.count(s[i]))
+            if(m.count(s[i]))
             {
-                m.erase(s[j]);
-                j++;
+                while(m.count(s[i]))
+                {
+                    m.erase(s[j]);
+                    j++;
+                }
+                 m.insert(s[i]);
+                ans = max(ans,i-j+1);
             }
-            m.insert(s[i]);
-            ans = max(ans,i-j+1);
+            else
+            {
+                 m.insert(s[i]);
+                ans = max(ans,i-j+1);
+            }
             i++;
+            
         }
+        
         
         
         return ans;
