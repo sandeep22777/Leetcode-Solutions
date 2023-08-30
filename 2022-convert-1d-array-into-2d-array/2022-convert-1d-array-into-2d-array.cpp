@@ -5,15 +5,14 @@ public:
         
         vector<vector<int>> v( m , vector<int> (n, 0));
         
-        if(original.size() != m*n) return {};  //return vector<vector<int>>{};
+      if(m*n != original.size()) return {};
         
-        int k =0;
-        for(int i=0;i< m;i++)
+        int temp = 0;
+        for(int i=0;i<m;i++)
         {
             for(int j=0;j<n;j++)
             {
-                v[i][j] = original[k];
-                k++;
+                v[i][j]  = original[temp++];
             }
         }
         
