@@ -10,20 +10,11 @@ public:
         int r = e;
         
         
-         while(s<=e)
-         {
-             if(nums[s] * nums[s] >= nums[e] * nums[e])
-             {
-                 ans[r] = nums[s]* nums[s];
-                 s++;
-                 r--;
-             }
-             else {
-                 ans[r] = nums[e] * nums[e];
-                 r--;
-                 e--;
-             }
-         }
+       for(int k = r;k>=0;k--)
+       {
+           if(abs(nums[s]) >= abs(nums[e]) ) ans[k] = nums[s]* nums[s++];
+           else ans[k] = nums[e]*nums[e--];
+       }
       
         return ans;
         
