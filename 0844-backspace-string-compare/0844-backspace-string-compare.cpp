@@ -1,65 +1,53 @@
 class Solution {
 public:
     
-    bool check(stack<char> a,stack<char> b)
-    {
-        bool flag =true;
-        
-        if(a.size() != b.size()) return false;
-        
-       while(!a.empty())
-       {
-            if(a.top() == b.top())
-            {
-                a.pop();
-                b.pop();
-            }
-            else
-            {
-                flag = false;
-                break;
-            }
-        }
-       
-        
-        return flag;
-    }
-    
-    
-    
     bool backspaceCompare(string s, string t) {
-        stack<char> one;
-        stack<char> two;
-       
+        stack<int> s1;
+        stack<int> s2;
+        
         for(int i=0;i<s.size();i++)
         {
-            if(s[i] != '#')
+            if(s[i]!= '#')
             {
-                one.push(s[i]);
+                s1.push(s[i]);
             }
-            else
-            {
-                if(!one.empty()) one.pop();
+            else {
+                if(s1.size() !=0)
+                {
+                     s1.pop();
+                }
+               
             }
         }
-        
         
           for(int i=0;i<t.size();i++)
         {
-            if(t[i] != '#')
+            if(t[i]!= '#')
             {
-                two.push(t[i]);
+                s2.push(t[i]);
             }
-            else
-            {
-                if(!two.empty()) two.pop();
+            else {
+                if(s2.size() !=0)
+                {
+                     s2.pop();
+                }
             }
         }
+        if(s1.empty() && !s2.empty()) return false;
+        if(s2.empty() && !s1.empty()) return false;
+        if(s1.size() != s2.size()) return false;
         
-        
-        
-        return check(one,two);
-     
-      
+        while(s1.size())
+        {
+            if(s1.top() != s2.top() )
+            {
+                return false;
+            }
+            else {
+                s1.pop();
+                s2.pop();
+            }
+        }
+        return true;
     }
 };
