@@ -11,57 +11,50 @@ public:
         int down = row-1;
         int right = col-1;
         int top = 0;
-        
-        
-        int dir =1;
+        int direction = 1;
         
         while(left<=right && top <=down)
         {
-            if(dir ==1)
+            if(direction == 1)
             {
-                for(int i= left;i<=right;i++)
+                for(int i=left;i<=right;i++)
                 {
                     ans.push_back(matrix[top][i]);
                 }
+                direction =2;
                 top++;
-                dir = 2;
             }
-            
-            
-            else if(dir ==2)
+           else if(direction == 2)
             {
-                for(int i= top;i<=down;i++)
+                for(int i=top;i<=down;i++)
                 {
                     ans.push_back(matrix[i][right]);
                 }
-                 right--;
-                dir = 3;
+                direction =3;
+                right--;
             }
-            
-            
-          else   if(dir ==3)
+           else if(direction == 3)
             {
-                for(int i= right;i>=left;i--)
+                for(int i=right;i>=left;i--)
                 {
                     ans.push_back(matrix[down][i]);
                 }
-                 down--;
-                dir = 4;
+                direction =4;
+                down--;
             }
-          
-            
-            
-           else  if(dir ==4)
+            else if(direction == 4)
             {
-                for(int i= down;i>=top;i--)
+                for(int i=down;i>=top;i--)
                 {
                     ans.push_back(matrix[i][left]);
                 }
-                 left++;
-                dir = 1;
+                direction =1;
+                left++;
             }
-               
         }
+        
+        
+
         return ans;
     }
 };
