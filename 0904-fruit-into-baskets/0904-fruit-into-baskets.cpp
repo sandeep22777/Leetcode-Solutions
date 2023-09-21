@@ -2,33 +2,23 @@ class Solution {
 public:
     int totalFruit(vector<int>& f) {
         
-        int i=0,j=0;
-        int ans = 0;
-       unordered_map<int,int> s;
+       unordered_map<int,int> m;
         
-        while(i<f.size())
+        int i=0;
+        int left = 0;
+        int ans = INT_MIN;
+        
+        for( i=0;i<f.size();i++)
         {
-            s[f[i]]++;
-            while(s.size() >2)
+            m[f[i]]++;
+            while(m.size() >2)
             {
-                if(s[f[j]] == 1)
-                {
-                    s.erase(f[j]);
-                }
-                else
-                {
-                    s[f[j]]--;
-                }
-                
-                
-                j++;
+                if(--m[f[left]] == 0) m.erase(f[left]);
+                left++;
             }
-            
-            ans = max(ans,i-j+1);
-            i++;
+            ans = max(ans,i-left+1);
         }
         
-
-      return ans;  
+        return ans;
     }
 };
