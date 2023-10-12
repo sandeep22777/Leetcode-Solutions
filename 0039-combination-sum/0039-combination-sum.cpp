@@ -1,35 +1,34 @@
 class Solution {
 public:
     
-     void cs(vector<int>&c,int t,int i,vector<vector<int>> &v,vector<int> &a)
-     {
-             
-             if(i==c.size() || t<0 || t==0)
-             {
-                     if(t ==0)
-                     {
-                                v.push_back(a);
-                             return ;
-                     }
-                     
-                    return ;
-             }
-
-        a.push_back(c[i]);
-             t = t-c[i];
-          cs(c,t,i,v,a);
-             a.pop_back();
-             t = t+c[i];
-             cs(c,t,i+1,v,a);
-
-     
-     }
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-         vector<vector<int>> v;
-            vector<int>a;
-
-            cs(candidates,target,0,v,a);
+    void subset(int i , vector<vector<int>> &ans,vector<int>& temp, int target, vector<int>& can )
+    {
+        if(target == 0 || i == can.size() || target < 0)
+        {
+            if(target ==0 )
+            {
+                ans.push_back(temp);
+            }
+           return;
+        }
+        
+        
+        if(can[i] <= target)
+        {
+            temp.push_back(can[i]);
+            subset(i,ans, temp,target-can[i],can);
+            temp.pop_back();
+        }
+        
+        subset(i+1,ans,temp,target,can);
+    }
+    
+    
+    vector<vector<int>> combinationSum(vector<int>& can, int target) {
+         vector<vector<int>> ans;
+        vector<int> temp;
+        subset(0, ans,temp,target,can);
+        return ans;
             
-           return v; 
     }
 };
