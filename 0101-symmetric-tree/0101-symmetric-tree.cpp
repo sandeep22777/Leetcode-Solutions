@@ -18,11 +18,7 @@ public:
         {
             return true;
         }
-        if(l == NULL && r != NULL) 
-        {
-            return false;
-        }
-         if(l != NULL && r == NULL) 
+        if(l == NULL || r == NULL) 
         {
             return false;
         }
