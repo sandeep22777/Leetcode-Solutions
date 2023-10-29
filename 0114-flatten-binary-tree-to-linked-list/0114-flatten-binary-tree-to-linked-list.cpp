@@ -14,7 +14,7 @@ public:
     void flatten(TreeNode* root) {
         TreeNode* current = root;
         
-        while(current != NULL)
+        while(current!= NULL)
         {
             if(current->left != NULL)
             {
@@ -24,9 +24,10 @@ public:
                     temp = temp->right;
                 }
                 temp->right = current->right;
-                current->right = current->left;
-                current->left = NULL;
+                current->right = current->left;  
+                 current->left = NULL;
             }
+            
             current = current->right;
         }
     }
