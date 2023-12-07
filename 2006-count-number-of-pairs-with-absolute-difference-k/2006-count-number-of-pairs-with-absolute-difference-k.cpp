@@ -8,10 +8,9 @@ public:
             m[nums[i]]++;
             if(m.find(nums[i] -k) != m.end() || m.find(nums[i] +k) != m.end())
             {
-                if(m[nums[i] - k] > 0) result += m[nums[i]-k]; 
-                if(m[nums[i] + k] > 0) result += m[nums[i]+k]; 
-            }
-           
+                 result += m[nums[i]-k]; 
+                result += m[nums[i]+k]; 
+            }           
         }
         return result;
     }
