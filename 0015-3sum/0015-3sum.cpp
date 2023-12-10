@@ -31,7 +31,7 @@ public:
                     result.push_back({nums[i],nums[low],nums[high]});
                     int low_occ = nums[low], high_occ = nums[high];
                     while(low<high && nums[low] == low_occ) low++;
-                    while(low<high && nums[high] == high_occ) high--;
+                    //while(low<high && nums[high] == high_occ) high--;
                     
                 }
             }
