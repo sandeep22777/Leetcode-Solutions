@@ -5,15 +5,20 @@ public:
         unordered_map<char,int> m;
         int j=0;
         int len = s.size();
-        for(int i=0;i<s.size();i++)
+        for(int i=0;i<len;i++)
         {
             m[s[i]]++;
-            while( m['a'] >= 1 && m['b'] >= 1 && m['c'] >= 1 )
+            while(m.size() == 3)
             {
                 ans += len-i;
                 m[s[j]]--;
+                if(m[s[j]] == 0)
+                {
+                    m.erase(s[j]);
+                }                
                 j++;
             }
+           
         }
         return ans;
     }
