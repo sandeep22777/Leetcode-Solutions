@@ -2,40 +2,40 @@ class Solution {
 public:
     vector<string> count(vector<string>& words)
     {
-        vector<string> ans;
-        unordered_map<char,int> minf;
+       vector<string> ans;
         
-        for (char ch = 'a'; ch <= 'z'; ch++)
+        unordered_map<char,int>v;
+        
+        for(char i='a';i<= 'z';i++)
         {
-            minf[ch] = 1000;
+            v[i] = 100;
         }
         
-        for(auto word : words)
+        for(int i=0;i<words.size();i++)
         {
-            unordered_map<char,int> fre;
-            
-            for(int i =0;i<word.size();i++)
+            unordered_map<char,int> m;
+            string s = words[i];
+            for(int j=0;j<s.size();j++)
             {
-                fre[word[i]]++;
+                m[s[j]]++;
             }
             
-        for (char ch = 'a'; ch <= 'z'; ch++)
-        {
-            minf[ch]  = min(minf[ch], fre[ch]);
-        }
-            
+            for(char mm = 'a';mm <= 'z'; mm++)
+            {
+                v[mm] = min(v[mm], m[mm]);
+            }
         }
         
-        for (char ch = 'a'; ch <= 'z'; ch++)
+        for(char i='a';i<= 'z';i++)
         {
-           while(minf[ch] > 0)
-           {
-              ans.push_back(string(1, ch));
-               minf[ch]--;
-           }
+            char temp = i;
+            while(v[temp]>0)
+            {
+                ans.push_back(string(1,temp));
+                v[temp]--;
+            }
         }
         return ans;
-        
     }
     
     vector<string> commonChars(vector<string>& words) {
