@@ -4,35 +4,32 @@ public:
     {
        vector<string> ans;
         
-        unordered_map<char,int>v;
-        
-        for(char i='a';i<= 'z';i++)
+       unordered_map<char,int> m;
+        for(char i = 'a'; i<='z';i++)
         {
-            v[i] = 100;
+            m[i] = 100;
         }
         
         for(int i=0;i<words.size();i++)
         {
-            unordered_map<char,int> m;
-            string s = words[i];
-            for(int j=0;j<s.size();j++)
+            string temp = words[i];
+            unordered_map<char,int> t;
+            for(int j = 0;j<temp.size();j++)
             {
-                m[s[j]]++;
+                t[temp[j]]++;
             }
             
-            for(char mm = 'a';mm <= 'z'; mm++)
+            for(char com = 'a';com <= 'z';com++)
             {
-                v[mm] = min(v[mm], m[mm]);
+                m[com] = min(t[com],m[com]);
             }
         }
-        
-        for(char i='a';i<= 'z';i++)
+        for(char i='a';i<='z';i++)
         {
-            char temp = i;
-            while(v[temp]>0)
+            while(m[i]>0)
             {
-                ans.push_back(string(1,temp));
-                v[temp]--;
+                ans.push_back(string(1,i));
+                m[i]--;
             }
         }
         return ans;
