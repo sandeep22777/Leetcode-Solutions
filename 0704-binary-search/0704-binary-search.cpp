@@ -1,21 +1,24 @@
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
-        int n = nums.size();
-        int low = 0;
-        int high = n - 1;
-        
-        while (low <= high) {
-            int mid = (low + high) / 2; // this may cause integer overflow
-			if (nums[mid] == target)
-				return mid;
-            else if (nums[mid] < target)
-                low = mid + 1;
-            else
-                high = mid - 1;
+    
+    int rec(vector<int>& nums, int t, int low,int high)
+    {
+        int mid = (low+ high)/2;
+        if(low>high) return -1;
+        if(nums[mid] == t)
+        {
+            return mid;
         }
-        
-        return -1;
-
+        else if(nums[mid]< t)
+        {
+           return  rec(nums,t,mid+1,high);
+        }
+        else {
+           return rec(nums,t,low,mid-1);
+        }
+    }
+    
+    int search(vector<int>& nums, int target) {
+      return rec(nums,target,0,nums.size()-1);
     }
 };
