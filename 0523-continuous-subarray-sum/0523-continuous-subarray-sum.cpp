@@ -1,27 +1,21 @@
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
-     unordered_map<int, int> m;
-    int cur = 0;
-    m[0] = -1;  // Initialize with remainder 0 at index -1 to handle cases where subarray starts at index 0
-    
-    for (int i = 0; i < nums.size(); i++) {
-        cur += nums[i];
-        int remainder = cur % k;
-        
-        // Adjust for negative remainder, as C++ '%' operator can return negative values
-        if (remainder < 0) remainder += k;
-
-        if (m.find(remainder) != m.end()) {
-            if (i - m[remainder] >= 2) {
-                return true;
+     unordered_map<int,int> m;
+       int ans= 0;
+        int cur = 0;
+        m[0] = 0;
+       for(int i=0;i<nums.size();i++)
+       {
+           cur += nums[i];
+           if(i >=1 &&cur%k == 0) return true;
+           if(m.find(cur%k) != m.end())
+           {
+               if(i-m[cur%k] >=2) return true;
             }
-        } else {
-            // Only store the first occurrence of a remainder
-            m[remainder] = i;
-        }
-    }
-    return false;
+          if(m.find(cur%k) == m.end()) m[cur%k] = i;
+       }
+        return false;
     }
 };
 
