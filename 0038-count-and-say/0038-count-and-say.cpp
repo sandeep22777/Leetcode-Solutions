@@ -1,31 +1,36 @@
 class Solution {
 public:
-    string m[31] = {""};
-    string countAndSay(int n) {
-        m[1] = "1";
-        string next, prev;
-        int j;
-        for(int i=2;i<n+1;i++)
+    
+    string count(string temp)
+    {
+         int count =1;
+        int i=1;
+        string ans;
+        for( i=1;i<temp.size();i++)
         {
-            int count=1;
-            next = "";
-            prev = m[i-1];
-            int len = prev.size();
-            
-            for(j=1;j<len;j++)
+            if(temp[i] == temp[i-1])
             {
-                if(prev[j-1] == prev[j])
-                {
-                    count++;
-                }
-                else {
-                    next += to_string(count) + prev[j-1];
-                    count=1;
-                }
+                count++;
             }
-            next += to_string(count) + prev[j-1];
-                    m[i] = next;           
+            else {
+                ans += to_string(count);
+                ans += temp[i-1];
+                count =1;
+            }
         }
-        return m[n];
+        ans += to_string(count);
+         ans += temp[i-1];
+        return ans;
+
+    }
+    
+    string countAndSay(int n) {
+        if(n == 1) return "1";
+        string ans = "1";
+        for(int i=1;i<n;i++)
+        {
+            ans = count(ans);
+        }
+        return ans;       
     }
 };
