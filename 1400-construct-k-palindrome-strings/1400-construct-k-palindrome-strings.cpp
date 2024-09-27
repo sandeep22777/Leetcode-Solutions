@@ -1,20 +1,16 @@
 class Solution {
 public:
     bool canConstruct(string s, int k) {
-        if(s.size() < k) return false;
+        if(k > s.size()) return false;
         unordered_map<char,int> m;
-        int odd =0;
+        for(auto i : s) m[i]++;
         
-        for(int i=0;i<s.size();i++)
+        int ans =0;
+        for(auto it = m.begin();it!= m.end();it++)
         {
-            m[s[i]]++;
+            if(it->second % 2 != 0) ans++;
         }
         
-        for(auto i :m)
-        {
-            if(i.second&1) odd++;
-        }
-        
-        return odd<=k;
+        return ans <= k ? true : false;
     }
 };
