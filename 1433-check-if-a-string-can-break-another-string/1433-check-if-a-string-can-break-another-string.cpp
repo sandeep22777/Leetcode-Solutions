@@ -2,9 +2,11 @@ class Solution {
 public:
     bool checkIfCanBreak(string s1, string s2) {
         if(s1.size() != s2.size()) return false;
-     sort(s1.begin(), s1.end());
-     sort(s2.begin(), s2.end());  
-        int c=0;
+        sort(s1.begin(),s1.end());
+        sort(s2.begin(),s2.end());
+        
+        int ans = 0;
+        
         for(int i=0;i<s1.size();i++)
         {
             if(s1[i] >= s2[i])
@@ -12,24 +14,23 @@ public:
                 continue;
             }
             else {
-                c++;
+                 ans++;
                 break;
             }
         }
         
-        for(int i=0;i<s1.size();i++)
+         for(int i=0;i<s1.size();i++)
         {
-            if(s2[i] >= s1[i])
+           if(s2[i] >= s1[i])
             {
                 continue;
             }
             else {
-                c++;
+                 ans++;
                 break;
             }
         }
         
-    return (c >= 2) ? false : true;
-
+        return ans > 1 ? false : true;
     }
 };
