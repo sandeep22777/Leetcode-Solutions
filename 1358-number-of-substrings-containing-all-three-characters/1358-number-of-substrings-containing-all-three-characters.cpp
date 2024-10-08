@@ -32,8 +32,28 @@ public:
 //             m[s[j]]++;
             
 //         }
-        int atmostk = findatmostk(s,3);
-      int atmostk2 = findatmostk(s,2);
-        return atmostk - atmostk2;
+      //   int atmostk = findatmostk(s,3);
+      // int atmostk2 = findatmostk(s,2);
+      //   return atmostk - atmostk2;
+         int ans= 0;
+        unordered_map<char,int> m;
+        int j=0;
+        int len = s.size();
+        for(int i=0;i<len;i++)
+        {
+            m[s[i]]++;
+            while(m.size() == 3)
+            {
+                ans += len-i;
+                m[s[j]]--;
+                if(m[s[j]] == 0)
+                {
+                    m.erase(s[j]);
+                }                
+                j++;
+            }
+           
+        }
+        return ans;
     }
 };
