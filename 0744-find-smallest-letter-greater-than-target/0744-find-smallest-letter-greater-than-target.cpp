@@ -7,16 +7,19 @@ public:
         
         while(s<e)
         {
-            int mid = s + (e-s)/2;
+           int mid = s + (e-s)/2;
             if(letters[mid] > target)
             {
                 e = mid;
+                
             }
             else {
-                s = mid+1;
+                s =mid+1;
             }
         }
         
-        return letters[s] > target ? letters[s] :  letters[0];
+        return letters[s] > target ? letters[s] : letters[0];
+        
+        
     }
 };
