@@ -4,6 +4,7 @@ public:
         int  s =0;
         int e = nums.size()-1;
         int ans =INT_MAX;
+        if(nums[s] <= nums[e]) return nums[s];
         
         while(s<=e)
         {
