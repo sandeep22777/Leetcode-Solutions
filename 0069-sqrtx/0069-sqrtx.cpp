@@ -14,15 +14,13 @@ public:
 //                 else e = mid-1;
 //         }
 //         return s-1;
-        if(n ==0) return 0;
          long long s = 1;
     long long e = n;
     int ans = 1;
-
+    if(n == 0) return 0;
     while(s<=e)
     {
         long long m = s + (e-s)/2;
-        // if(m*m == n) return m;
 
         if(m*m > n)
         {
